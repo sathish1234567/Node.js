@@ -1,5 +1,59 @@
 config.js   --- Explaination
 
+varaible decleration: 
+Ex: 
+1. <varaible name1>:<value1>
+2. <varaible name2>:<value2>
++++++++++++++++++++++++++++
+array decleration:
+Ex: 
+let <arrayname>=[];
+
+sending value to array
+Ex:a["0"]=1;
+   a["1"]=2;
+   
++++++++++++++++++++++++++++
+Object declearation:
+creating object:
+var car = {type:"Fiat", model:"500", color:"white"};
+
+
+accessing properties of the object:
+objectName["propertyName"]
+objectName.propertyName
+
+Ex:
+car.type
+car.model
+car.color
+
+empty object creation
+<object name> = { };
+
+defining the object of varaibles and those methods
+var person = {
+  firstName: "John",
+  lastName : "Doe",
+  id       : 5566,
+  fullName : function() {
+    return this.firstName + " " + this.lastName;
+  }
+};
+
+accessing the method of an object:
+objectName.methodName()
+
+
+
+
+
+
+
+
+
+
+
 module.exports={                    // used to all the varaibles and methods sending to another file, in that file u can import this file.
 
 //varaibles

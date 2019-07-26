@@ -1,0 +1,168 @@
+api
+  |_controllers
+      |_index.js
+  |_routes
+      |_index.js
+      
+
+const utils = require('../utils'),  ----> isUserAuthentic
+    config = require('../../config'),---> post calling PORT:8000
+    redis = require('../redis');    
+
+routes
+  |_index.js
+const express = require('express'),
+    router = express.Router(),
+    oController = require('../controllers');
+router.post("/ArticleSet", oController.handlePostArticleSet);
+module.exports = router;
+
+
+controllers
+  |_index.js
+
+const utils = require('../utils'),
+    config = require('../../config'),
+    redis = require('../redis');
+
+exports.handlePostArticleSet = (req, res) => {
+    utils.isUserAuthentic(req, res, async () => {
+        let csrfResponse = await utils.fetchCSRFToken(req, res),
+            payload = req.body;
+
+        let urls = [];
+
+        if (Array.isArray(payload.items) && payload.items.length > 0) {
+            let items = payload.items,
+                itemsLen = payload.items.length;
+            for (let i = 0; i < itemsLen; i++) {
+                let ind = items[i].os_ind,
+                    sloc = items[i].Lgort,//items[i].StockType !== "" ?
+                    rsloc = items[i].StockType === "" ? items[i].Umlgo : "",
+                    stockType = items[i].StockType;
+                //for first time payload creation for the server
+                //serverid - storage location - stock type combination to be saved as array index
+                if (urls[ind + "-" + sloc + "-" + rsloc + "-" + stockType] === undefined) {
+                    let url = {
+                        method: config.aMethodTypes[1],
+                        fnSuccess: utils.postFnSuccess,
+                        token: csrfResponse[0],
+                        cookie: csrfResponse[1]
+                    };
+                    if (ind === config.sDevice) {
+                        url.url = config.sBaseUrl + config.aServices[0] + "/MATERIALHEADERSet";
+                        url.payload = {
+                            Werks: items[i].Werks,
+                            HeaderText: (payload.remark) ? payload.remark : "", //needs to be send from UI
+                            items: [{
+                                Lgort: items[i].Lgort,
+                                Kostl: "",
+                                Matnr: items[i].Matnr,
+                                Erfmg: items[i].Erfmg,
+                                Erfme: items[i].Erfme,
+                                Sernr: items[i].Sernr,
+                                Umlgo: items[i].Umlgo,
+                                Remarks: items[i].Remarks
+                            }]
+                        };
+                        urls[ind + "-" + sloc + "-" + rsloc + "-" + stockType] = url;
+                    } else if (ind === config.sFTTX && stockType === "") {
+                        url.url = config.sBaseUrl + config.aServices[1] + "/MATERIALHEADERSet";
+                        url.payload = {
+                            items: [{
+                                Charg: items[i].Bwtar,
+                                Lgort: items[i].Lgort,
+                                Kostl: "",
+                                Matnr: items[i].Matnr,
+                                Erfmg: items[i].Erfmg,
+                                Erfme: items[i].Erfme,
+                                Sernr: items[i].Sernr,
+                                Umlgo: items[i].Umlgo
+                            }]
+                        };
+                        urls[ind + "-" + sloc + "-" + rsloc + "-" + stockType] = url;
+                    } else {
+                        url.url = config.sBaseUrl + config.aServices[2] + "/HeaderSet";
+                        url.payload = {
+                            Text: items[i].Reason,
+                            Sloc: items[i].Lgort,
+                            StockType: items[i].StockType,
+                            UnlodingPt: items[i].RefDocNum,
+                            HEADERITEMNAV: [{
+                                Batch: items[i].Bwtar,
+                                MaterialNum: items[i].Matnr,
+                                TransferQuant: items[i].Erfmg,
+                                UoM: items[i].Erfme,
+                                ITEMSERIALNAV: []
+                            }]
+                        };
+                        if (items[i].Sernr !== "") {
+                            let oSerialNums = {
+                                SerialNum: items[i].Sernr
+                            };
+                            url.payload.HEADERITEMNAV[0].ITEMSERIALNAV.push(oSerialNums);
+                        }
+                        urls[ind + "-" + sloc + "-" + rsloc + "-" + stockType] = url;
+                    }
+                } else {
+                    //when adding an entry to the existing array
+                    if (ind === config.sDevice) { //for Device
+                        urls[ind + "-" + sloc + "-" + rsloc + "-" + stockType].payload.items.push({
+                            Lgort: items[i].Lgort,
+                            Kostl: "",
+                            Matnr: items[i].Matnr,
+                            Erfmg: items[i].Erfmg,
+                            Erfme: items[i].Erfme,
+                            Sernr: items[i].Sernr,
+                            Umlgo: items[i].Umlgo,
+                            Remarks: items[i].Remarks
+                        });
+                    } else if (ind === config.sFTTX && stockType === "") { //for FTTX
+                        urls[ind + "-" + sloc + "-" + rsloc + "-" + stockType].payload.items.push({
+                            Charg: items[i].Bwtar,
+                            Lgort: items[i].Lgort,
+                            Kostl: "",
+                            Matnr: items[i].Matnr,
+                            Erfmg: items[i].Erfmg,
+                            Erfme: items[i].Erfme,
+                            Sernr: items[i].Sernr,
+                            Umlgo: items[i].Umlgo
+                        });
+                    } else { //for O&M
+                        let articles = urls[ind + "-" + sloc + "-" + rsloc + "-" + stockType].payload.HEADERITEMNAV,
+                            itemFound = false;
+                        for (let j = 0; j < articles.length; j++) {
+                            if (items[i].Matnr === articles[j].MaterialNum &&
+                                items[i].Bwtar === articles[j].Batch) {
+                                let oSerialNums = {
+                                    SerialNum: items[i].Sernr
+                                };
+                                articles[j].ITEMSERIALNAV.push(oSerialNums);
+                                articles[j].TransferQuant = (parseInt(articles[j].TransferQuant) + 1).toString();
+                                itemFound = true;
+                                break;
+                            }
+                        }
+                        if (!itemFound) {
+                            let oItem = {
+                                Batch: items[i].Bwtar,
+                                MaterialNum: items[i].Matnr,
+                                TransferQuant: items[i].Erfmg,
+                                UoM: items[i].Erfme,
+                                ITEMSERIALNAV: []
+                            };
+                            if (items[i].Sernr !== "") {
+                                let oSerialNums = {
+                                    SerialNum: items[i].Sernr
+                                };
+                                oItem.ITEMSERIALNAV.push(oSerialNums);
+                            }
+                            urls[ind + "-" + sloc + "-" + rsloc + "-" + stockType].payload.HEADERITEMNAV.push(oItem);
+                        }                        
+                    }
+                }
+            }
+        }
+
+        await utils.fetchData(req, res, urls, true); //post data and send response
+    });

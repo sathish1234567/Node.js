@@ -88,7 +88,37 @@ var2:process.env.NODE_APP_REDIS_PORT
 
 
 +++++++++++++++++++++++++++++++++++++++++++++++++++
+node js:
 
+error throw:
+
+if (error) {
+console.log("Error:" + error);
+throw error;
+}
+
+++++++++++++++++++++++++++++++++++++++++++++++++++
+
+try ..... catch block
+
+try
+{
+...... executable code
+}
+catch(err)
+{
+........ any error occur in try block, catch block will catches the error
+}
+
+Ex:
+try {
+     data = JSON.parse(result);
+     //console.log(data);
+     } catch (err) {
+     console.log(err);
+     data = [];
+     }
+++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
 
@@ -181,6 +211,19 @@ get aSendSlocUrls() {
             }
         ];
     }
-    };
+ };         //////////////////// config.js completed/////////////////
     
-    
++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+index.js explanation
+
+index.js file main file start the execution from here.
+
+const express = require("express"),
+    config = require("./config"),
+    apm = require("elastic-apm-node"),
+    router = require("./api/routes"),
+    //session = require("express-session"),
+    //uuid = require("uuid"),
+    //RedisStore = require("connect-redis")(session)
+    app = express();

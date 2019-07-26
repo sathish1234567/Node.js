@@ -75,7 +75,7 @@ get aSendSlocUrls() {
             {
                 method: this.aMethodTypes[1],               // passing :"post"
                 url: this.sBaseUrl + this.aServices[2] + "/HeaderSet"
-                //url:http://nwgwtgd.bss.dev.jio.com:8000/sap/opu/odata/sap/ZJIO_SLOC_TO_SLOC_MATNR_P91_SRV/HeaderSet
+                //url:http://nwgwtgd.bss.dev.jio.com:8000/sap/opu/odata/sap/Z_FIORI_TRNSFR_POSTING_SRV/HeaderSet
             }
         ];
     }

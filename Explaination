@@ -35,11 +35,15 @@ module.exports={                    // used to all the varaibles and methods sen
 
 
 get aArticleUrls() {
+        // in below statement returning the object bcoz they declared as [{.....},{....}]
+        // this is used for accessing the varaibe with in the file
         return [{
                 url: this.sBaseUrl + this.aServices[3] + "/HeaderSet(SerialNum='')?$expand=MaterialSet/SerialNumSet"
+                //url:http://nwgwtgd.bss.dev.jio.com:8000/sap/opu/odata/sap/Z_OPEN_SLOC_TO_SLOC_SRV/HeaderSet(SerialNum='')?$expand=MaterialSet/SerialNumSet
             },
             {
                 url: this.sBaseUrl + this.aServices[4] + "/HeaderSet(SerialNum='')?$expand=MaterialSet/SerialNumSet"
+                //url:http://nwgwtgd.bss.dev.jio.com:8000/sap/opu/odata/sap/Z_OPEN_SLOC_TO_SLOC_P91_SRV"/HeaderSet(SerialNum='')?$expand=MaterialSet/SerialNumSet
             }
         ];
-    },
+    },          // ended aArticleUrls function

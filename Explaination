@@ -1,6 +1,6 @@
 config.js
 
-module.exports={
+module.exports={                    // used to all the varaibles and methods sending to another file, in that file u can import this file.
 
 //varaibles
     port:8000;        //single varaible decleration
@@ -31,4 +31,15 @@ module.exports={
         aInd[this.aServices[4]] = this.sFTTX;         --> aInd[Z_OPEN_SLOC_TO_SLOC_P91_SRV]="B"
         aInd[this.aServices[2]] = this.sOnM;          --> aInd[Z_FIORI_TRNSFR_POSTING_SRV]="B1"
         return aInd;                                  // returning the entire array
+    },
+
+
+get aArticleUrls() {
+        return [{
+                url: this.sBaseUrl + this.aServices[3] + "/HeaderSet(SerialNum='')?$expand=MaterialSet/SerialNumSet"
+            },
+            {
+                url: this.sBaseUrl + this.aServices[4] + "/HeaderSet(SerialNum='')?$expand=MaterialSet/SerialNumSet"
+            }
+        ];
     },

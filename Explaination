@@ -1,0 +1,34 @@
+config.js
+
+module.exports={
+
+//varaibles
+    port:8000;        //single varaible decleration
+    redisPort: process.env.NODE_APP_REDIS_PORT || 6379,   //single varaible decleration, used  either condition
+    redisHost: process.env.NODE_APP_REDIS_HOST || '127.0.0.1',
+    sApmUrl: process.env.NODE_APP_APM_URL || '',
+    aMethodTypes: ["GET", "POST", "PUT", "DELETE"],   // is an array
+    sBaseUrl: (process.env.NODE_APP_ODATA_HOSTNAME || "http://nwgwtgd.bss.dev.jio.com:8000") + "/sap/opu/odata/sap/",
+    aServices: [                          // is an array
+        "ZJIO_SLOC_TO_SLOC_MATNR_TRF_SRV", //Device
+        "ZJIO_SLOC_TO_SLOC_MATNR_P91_SRV", //FTTX
+        "Z_FIORI_TRNSFR_POSTING_SRV", //O&M
+        "Z_OPEN_SLOC_TO_SLOC_SRV", //Device
+        "Z_OPEN_SLOC_TO_SLOC_P91_SRV", //FTTX & O&M
+        "Z_OS_SITE_GLOBAL_SRV" //My Data service
+    ],
+    sDevice: "A", //Device    // variable
+    sFTTX: "B", //FTTX        // varaible
+    sOnM: "B1", //O&M         // varaible
+    
+    
+   /// functions implementation:
+   get aIndicators() {
+        let aInd = [];            // array decleartions
+        aInd[this.aServices[0]] = this.sDevice;       --> aInd[ZJIO_SLOC_TO_SLOC_MATNR_TRF_SRV]="A"
+        aInd[this.aServices[3]] = this.sDevice;       --> aInd[Z_OPEN_SLOC_TO_SLOC_SRV]="A"
+        aInd[this.aServices[1]] = this.sFTTX;         --> aInd[ZJIO_SLOC_TO_SLOC_MATNR_P91_SRV]="B"
+        aInd[this.aServices[4]] = this.sFTTX;         --> aInd[Z_OPEN_SLOC_TO_SLOC_P91_SRV]="B"
+        aInd[this.aServices[2]] = this.sOnM;          --> aInd[Z_FIORI_TRNSFR_POSTING_SRV]="B1"
+        return aInd;                                  // returning the entire array
+    },

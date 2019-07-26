@@ -47,3 +47,38 @@ get aArticleUrls() {
             }
         ];
     },          // ended aArticleUrls function
+
+
+
+get aSendSlocUrls() {
+        // returning the object, it contains one value [{...}]
+        return [{
+            url: this.sBaseUrl + this.aServices[2] + "/StorageLocListSet"
+            //url:http://nwgwtgd.bss.dev.jio.com:8000/sap/opu/odata/sap/Z_FIORI_TRNSFR_POSTING_SRV/StorageLocListSet
+        }];
+    },
+    
+    
+    
+ 
+ get aArticlePostUrls() {
+        return [{
+                method: this.aMethodTypes[1],               // passing :"post"
+                url: this.sBaseUrl + this.aServices[0] + "/MATERIALHEADERSet"
+                //url:http://nwgwtgd.bss.dev.jio.com:8000/sap/opu/odata/sap/ZJIO_SLOC_TO_SLOC_MATNR_TRF_SRV/MATERIALHEADERSet
+            },
+            {
+                method: this.aMethodTypes[1],               // passing :"post"
+                url: this.sBaseUrl + this.aServices[1] + "/MATERIALHEADERSet"
+                //url:http://nwgwtgd.bss.dev.jio.com:8000/sap/opu/odata/sap/ZJIO_SLOC_TO_SLOC_MATNR_P91_SRV/MATERIALHEADERSet
+            },
+            {
+                method: this.aMethodTypes[1],               // passing :"post"
+                url: this.sBaseUrl + this.aServices[2] + "/HeaderSet"
+                //url:http://nwgwtgd.bss.dev.jio.com:8000/sap/opu/odata/sap/ZJIO_SLOC_TO_SLOC_MATNR_P91_SRV/HeaderSet
+            }
+        ];
+    }
+    };
+    
+    

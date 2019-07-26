@@ -71,7 +71,7 @@ object
 node js:
 .env -->file
    |_NODE_APP_APM_URL=http://vbb.com:8200
-   |_NODE_APP_REDIS_PORT=6379
+   |_NODE_APP_REDIS_PORT=7978
    |_NODE_APP_REDIS_HOST=vbb.com
    |_NODE_APP_ODATA_HOSTNAME=http://xxx.com:8000
    
@@ -119,7 +119,11 @@ try {
      data = [];
      }
 ++++++++++++++++++++++++++++++++++++++++++++++++++
+How to send the blank records?
+data = [];
 
+return data;
+++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 
 

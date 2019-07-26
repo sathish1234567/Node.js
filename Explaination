@@ -1,4 +1,4 @@
-config.js   --- Explaination
+--- Explaination
 
 varaible decleration: 
 Ex: 
@@ -43,6 +43,31 @@ var person = {
 
 accessing the method of an object:
 objectName.methodName()
+++++++++++++++++++++++++++++++++++++
+
+return: 
+used for rerurn the varaible/array/object.
+
+Ex
+return array/var/object;
+
+
+++++++++++++++++++++++++++++++++++++
+This (keyword)
+
+use to access the componets with in the objects
+
+object
+   |_var1 (prop1)
+   |_var2 (prop2)
+   |_fn1{.........} (method) 
+   
+   suppose i want to accesss the var1 and var2 inside the fn1, we can use the this keyword
+   function:fn1(){
+   return this.var1 + this.var2;
+   }
+ 
+++++++++++++++++++++++++++++++++++++
 
 
 
@@ -53,6 +78,10 @@ objectName.methodName()
 
 
 
+
+
+
+config.js   file information
 
 module.exports={                    // used to all the varaibles and methods sending to another file, in that file u can import this file.
 

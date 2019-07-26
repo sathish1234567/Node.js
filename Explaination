@@ -1,4 +1,4 @@
-config.js
+config.js   --- Explaination
 
 module.exports={                    // used to all the varaibles and methods sending to another file, in that file u can import this file.
 

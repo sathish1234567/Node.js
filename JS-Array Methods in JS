@@ -50,6 +50,83 @@ a.push(4);  or a.push(a.length) = 4;
 
 output: a[1,2,3,4]
 
+--->isArray()
+Array.isArray(a) --> return bollean value true or false
+output: true bcz 'a' --> is an array
+
+--->toString()
+means: convert array to string
+var x = a.toString()
+x=s,a,t
+
+----> join(<<elt seperator>>)
+join is also work as toString(), but additionally added the seperator
+a.join(" , ");
+output:
+s*a*t
+
+----> pop()
+delete the element from an array
+delete work as LIFO(last in first out)/recently added elt deleted.../ removes last elet
+
+Ex:a.pop()
+"t" -->removed
+
+---> shift() 
+removes the first element (FIFO)
+a.shift() 
+
+output:
+removes 'S' from an array "a"
+
+----> unshift()
+add the elements at the beginning
+a.unshift("B") --> it is adding to first place
+
+a = ['B','S','A','T']
+
+---->changing the elts in ana array based on index only possible
+a[0] = 'Boll'
+
+output:
+a = ['BOll','S','A','T']
+
+---> deleting the elets based on index
+delete a[0] 
+
+delete the 0 index. --> Boll
+
+output:
+a = ['S','A','T']
+
+----> splice()
+to add new elts to an array
+splice method returns the an array with removed elts
+
+
+syntax:
+a.splice(1,0,"1","2");  --> means 1 --> where to start the add elt in an array here from index 1
+                                  0 --> how many elts delete from an index --> no delete the elts means --> 0
+                                  "1", "2" elets inserted from an index 1
+                                  
+Ouput:
+a = ['s','1','2','A','T"]
+
+Ex:
+
+var fruits = ["Banana", "Orange", "Apple", "Mango"];
+fruits.splice(2, 1, "Lemon", "Kiwi");
+
+Ouput:
+Banana,Orange,Lemon,Kiwi,Mango
+
+
+
+
+
+
+
+
 
 
 

@@ -100,10 +100,10 @@ output:
 a = ['S','A','T']
 
 ----> splice()
-to add new elts to an array
+to add new/ delete the elts to an array
 splice method returns the an array with removed elts
 
-
+Adding:
 syntax:
 a.splice(1,0,"1","2");  --> means 1 --> where to start the add elt in an array here from index 1
                                   0 --> how many elts delete from an index --> no delete the elts means --> 0
@@ -115,10 +115,75 @@ a = ['s','1','2','A','T"]
 Ex:
 
 var fruits = ["Banana", "Orange", "Apple", "Mango"];
-fruits.splice(2, 1, "Lemon", "Kiwi");
+a = fruits.splice(2, 1, "Lemon", "Kiwi");
 
 Ouput:
 Banana,Orange,Lemon,Kiwi,Mango
+a = ["Applie"] --> delted items
+
+Deleting():
+var fruits = ["Banana", "Orange", "Apple", "Mango"];
+a=fruits.splice(0, 1);        // Removes the first element of fruits
+
+output:
+fruits = ["Orange", "Apple", "Mango"];
+a=["Banana"]
+
+----> concat() --> merging of two arrays
+It always returns a new array.
+
+var myGirls = ["Cecilie", "Lone"];
+var myBoys = ["Emil", "Tobias", "Linus"];
+var myChildren = myGirls.concat(myBoys);   // Concatenates (joins) myGirls and myBoys
+
+output:
+Cecilie,Lone,Emil,Tobias,Linus
+
+var arr1 = ["Cecilie", "Lone"];
+var arr2 = ["Emil", "Tobias", "Linus"];
+var arr3 = ["Robin", "Morgan"];
+var myChildren = arr1.concat(arr2, arr3);   // Concatenates arr1 with arr2 and arr3
+
+output:
+Cecilie,Lone,Emil,Tobias,Linus,Robin,Morgan
+
+
+merging array with values:
+var arr1 = ["Cecilie", "Lone"];
+var myChildren = arr1.concat(["Emil", "Tobias", "Linus"]);
+
+output:
+Cecilie,Lone,Emil,Tobias,Linus
+
+-----> slice(start index)
+The slice() method slices out a piece of an array into a new array.
+The slice() method creates a new array. It does not remove any elements from the source array.
+
+var fruits = ["Banana", "Orange", "Lemon", "Apple", "Mango"];
+var citrus = fruits.slice(1); ---> it returns an array from index 1
+var citrus1 = fruits.slice(4); ---> it returns an array from index 1
+output:
+citrus=["Orange", "Lemon", "Apple", "Mango"]
+citrus1=["Mango"]
+
+slice( startindex, needed elts(endindex-1))
+
+Ex:
+var fruits = ["Banana", "Orange", "Lemon", "Apple", "Mango"];
+var citrus = fruits.slice(1, 3);
+
+output:
+citrus = ["Orange", "Lemon"]
+
+
+
+
+
+
+
+
+
+
 
 
 

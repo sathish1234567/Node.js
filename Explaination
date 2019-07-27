@@ -124,6 +124,31 @@ data = [];
 
 return data;
 ++++++++++++++++++++++++++++++++++++++++++++++++++++
+var express = require('express');
+var app = express();
+app.get('/', function(req, res){ 
+//req --> receving the message
+//res --> sending response from node to front end
+// res.send( any varaible/array ) --> is is converting to jsin format
+// res.write( string )
+// res.end();
+//res.redirect('/ports');
+},
+
+app.get('/blocks/:plant', function(req, res){ 
+var a = ['fixed', 'Movable', 'Roatating'];
+res.send(a); --> send function convert array to json automatically
+}
+
+// note: res.send() and res.JSON same functionality (converting JSON format
+app.listen(3000);
+http://localhost:3000/;
+http://localhost:3000/blocks/1000; --  response ["fixed", "Movable", "Rotating"]
+app.get/post/delete/patch('path', function(req, res){.......}
++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
+
+
 
 
 
@@ -218,10 +243,11 @@ get aSendSlocUrls() {
  };         //////////////////// config.js completed/////////////////
     
 +++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
+to be learn express, express.Router(), router.use(), axiom, async func, call back function
 index.js explanation
 
 index.js file main file start the execution from here.
+
 
 const express = require("express"),
     config = require("./config"),

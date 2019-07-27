@@ -177,6 +177,53 @@ citrus = ["Orange", "Lemon"]
 
 
 
+------> Sort()
+
+for strings
+
+ASC:
+----
+Ex:
+
+var fruits = ["Banana", "Orange", "Apple", "Mango"];
+fruits.sort();        // Sorts the elements of fruits
+
+fruits=[Apple,Banana,Mango,Orange]
+
+----> reverse()
+ for Descending
+ 
+ var fruits = ["Banana", "Orange", "Apple", "Mango"];
+fruits.sort();        // First sort the elements of fruits 
+fruits.reverse();     // Then reverse the order of the elements
+
+output
+fruits=[Apple,Banana,Mango,Orange]  -> sort()
+fruits=[Orange,Mango,Banana,Apple]
+
+
+
+
+
+for numbers
+
+Ascending:
+var points = [40, 100, 1, 5, 25, 10];
+points.sort(function(a, b){return a - b});
+
+points=[1,5,10,25,40,100]
+
+Descending
+var points = [40, 100, 1, 5, 25, 10];
+points.sort(function(a, b){return b - a});
+
+points=[100,40,25,10,5,1]
+
+
+
+
+
+
 
 
 

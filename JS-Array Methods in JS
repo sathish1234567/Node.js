@@ -1,0 +1,60 @@
+Java script Arrays:
+arrays always support umbered index.
+
+1. defining the Array:
+used to store multiple values in single varaible:
+
+Ex:.  var cars= ["s", "a", "t"];
+
+2. blank array decelrations:
+
+var a=[];
+
+3. assinging values to blank array
+a[0] = "S";
+a[1] = "A";
+a[3} = "T";
+
+4. access the element of an array:
+a[0],  display as 'S'.
+
+5 . Arrays type is object.
+
+typeOf(a); --> object
+
+4. you can store in array as <-- functions objects, Arrays
+
+5. Array properties and methods
+
+length:
+a.length = 3 contains 3 elements
+a.sort() --> sorting ascending order by default asc
+
+to get the last element of an array --> a[a.length - 1] == 'T' means a[3-1] = a[2]
+
+looping arrays:
+var b =[];
+for(i=0; i<a.length - 1; i++)
+{
+b[i] = a[i];
+}
+
+push() and pop()
+
+--> push()
+adding elements to an array
+it is appending to an array
+
+Ex: a[1, 2, 3];
+a.push(4);  or a.push(a.length) = 4;
+
+output: a[1,2,3,4]
+
+
+
+
+
+
+
+
+

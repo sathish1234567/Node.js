@@ -221,6 +221,104 @@ points=[100,40,25,10,5,1]
 
 
 
+<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>.
+Iteration Methods
+
+
+1. forEach()
+2. .map()
+3. .filter()
+4. .reduce()
+5. .reduceRight()
+6. .every()
+7. .some()
+8. .indexOf()
+9. .lastIndexOf()
+10. .find()
+11. .findIndex()
+
+ forEach():
+ 
+ Array.protoType.forEach(callback,[context])
+ -- invokes the call back for each value
+ -- always returns undefined.
+ -- you can not the break out of the loop unless you throw an exception
+ -- call back arguements(value(v), index(i), array)
+ -- nothing is return.
+ 
+ array a[4]
+ 0    1   2   3         index
+ 1    2   3   4         content/value
+ 
+ const a = [1,2,3,4];
+ 
+ 
+const ret = a.forEach(v=>{
+ throw new Error('Error manully teminated');
+ console.log(v)
+ });
+ 
+ console.log(ret);      --> undefined
+ 
+ output:
+ 1
+ 2
+ 3
+ 4
+ 
+ undefined   --> no return from foreach()
+ 
+ here:
+ call back function has defined as above code
+ 
+ v=>{
+ throw new Error('Error manully teminated');
+ console.log(v)
+ }
+ 
+ 
+ 
+ 
+ filter():
+ _________
+ -- Array.prototype.filter(callback,[context]);
+ -- returns a new array of elts that pass filter
+ -- will not modify the existing array
+ -- callback takes(elt, index, originalarray)
+ -- returns the values based on true.
+ 
+Ex: 
+ const a=[1,2,10,11]; num = 1,2,10,11 passed to one by one
+ filtered = a.filter(num => num > 5 );
+ console.log(filtered);
+ 
+ output:
+ filtered:
+ 10, 11
+ 
+ Ex: 
+ const a=[1,2,10,11]; num = 1,2,10,11 passed to one by one
+                      i -- index of an each elt of an array
+ filtered = a.filter((num,i) => i % 2 == 0 );
+ console.log(filtered);
+ 
+ output:
+ 1,2,10
+ 
+ 
+  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+
+
 
 
 

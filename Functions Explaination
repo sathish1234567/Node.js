@@ -1,3 +1,6 @@
+function().then(results=>{....}).catch(err=>{ return err })
+___________________________________________________________
+
 Async and wait:
 ---------------
 
@@ -6,6 +9,7 @@ Async and wait:
 -- sync functions blocking the code
 -- use async code above 7.6 version
 -- to check the version in cmd visual studio code : node -v <-| 8.1
+-- await is only valid in async functions only
 
 promises:
 ________
@@ -47,3 +51,5 @@ node index.js
 output:
 
 {data1:'f1 text', data2:'f2 text'}
+
+

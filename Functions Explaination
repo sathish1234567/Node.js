@@ -1,0 +1,49 @@
+Async and wait:
+---------------
+
+-- async functions built on promises
+-- it is non blocking code
+-- sync functions blocking the code
+-- use async code above 7.6 version
+-- to check the version in cmd visual studio code : node -v <-| 8.1
+
+promises:
+________
+f1.txt
+  |_content: f1 text
+  
+
+f2.txt
+  |_content: f2 text  
+
+index.js file
+function doA(){
+  return new Promise(function(resolve, reject){
+    fs.readFile('f1.txt', function(err,data){
+      if(!err){
+      resolve(data.toString());
+      }
+    }
+  }
+}
+
+function doB(){
+  return new Promise(function(resolve, reject){
+    fs.readFile('f2.txt', function(err,data){
+      if(!err){
+      resolve(data.toString());
+      }
+    }
+  }
+}
+aysnc function main(){
+  myObj['data1'] = await doA();
+  myObj['data2'] = await doB();
+  console.log(myObj);
+}
+main();
+
+node index.js
+output:
+
+{data1:'f1 text', data2:'f2 text'}

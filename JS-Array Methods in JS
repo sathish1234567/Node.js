@@ -294,7 +294,7 @@ Ex:
  
  output:
  filtered:
- 10, 11
+ [10, 11]
  
  Ex: 
  const a=[1,2,10,11]; num = 1,2,10,11 passed to one by one
@@ -303,8 +303,28 @@ Ex:
  console.log(filtered);
  
  output:
- 1,2,10
+[ 1,2,10]
  
+ 
+ map()
+ _____
+ -- Array.prototype.map(callback,[context])
+ -- returns a new array with values equal to the output of the callback function
+ -- will not modify the existing array
+ -- callback takes(elet, index,originalarray)
+ 
+ 
+ Ex:
+ Ex: 
+ const a=[1,2,3,4]; num = 1,2,10,11 passed to one by one
+                      i -- index of an each elt of an array
+ filtered = a.map(num => num * num );
+ console.log(filtered);
+ 
+ output:
+[ 1,4,9,16]
+
+
  
   
  

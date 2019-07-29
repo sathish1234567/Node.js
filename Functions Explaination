@@ -1,5 +1,109 @@
+Promise function()
+-- promise function call back functions --> 2 params (resolve, reject)
+-- how to define promise function in Node
+syntax for define():
+let <PromiseFn> = new Promise(function(resolve, reject){..........});
+Where
+resolve --> Promise is fullfilled
+reject  --> Promise is not fullfilled
+
+Syntax for calling promise function()
+<PromiseFn>.then(callback fn(){...}).catch(function(fromRject){.....})
+
+Here
+callback fn(){...} --> related to resolve
+catch(function(fromRject){.....})/callback fn() --> related to reject
+
+Ex:
+ler promiseToCleanTheRoom = new Promise(function(resolve,reject){
+  let isClean = true;
+  if(isClean){
+    resolve('Clean');
+  }else{
+    reject('Not Clean');
+  }
+});
+
+
+promiseToCleanTheRoom.then(function(fromResolve){
+consloe.log('Room is' + fromResolve);
+}).catch(function(fromReject){
+consloe.log('Room is' + fromReject);
+});
+
+output:
+______
+if it is resolved:Room is clean.
+else: Room is not clean
+
+
+Promise for multiple function()
+_______________________________
+
+let cleanRoom = function(){
+  return new Promise(function(resolve, reject){
+    resolve('Cleanedt he room');
+  });
+};
+
+let removeGarbage = function(message){
+  return new Promise(function(resolve, reject){
+    resolve(mesasge + 'remove garbage');
+  });
+};
+
+let winIceCream = function(message){
+  return new Promise(function(resolve, reject){
+    resolve(message + 'won Ice cream');
+  });
+};
+
+calling:
+
+cleanRoom().then(function(result){
+  return removeGarbage(result);
+}).then(function(result){
+  return winIceCream(result)
+}).then(function(result){
+  console.log('finished' + result);
+})
+
+or
+
+Promise.all()
+_____________
+syntax
+Promise.all([promisefn1(), promisefn2(), promisefn3()....]).then(callback fn(){.....});
+
+Promise.all([cleanRoom(),removeGarbage(result),winIceCream(result)].then(function(){console.log('all finished')});
+
+
+output:
+finished cleaned the room remove garbage won incecream
+or all finsihed
+
+
+Promise.race()
+______________
+Promise.race([cleanRoom(),removeGarbage(),winIceCream()]).then(function(){console.log('One of them is finished')};
+
+output:
+One of them is finished.
+
+
+
+
+
+
+
 function().then(results=>{....}).catch(err=>{ return err })
 ___________________________________________________________
+
+
+
+
+
+
 
 Async and wait:
 ---------------

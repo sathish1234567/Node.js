@@ -43,8 +43,181 @@ _______________
 
 
 
-req.body
+req.body  
 ________
+
+this is used in payload to get the all information from request
+
+-- basically request object HTTP request object.
+-- means that, instance of HTTP request object
+-- request instance contains body(req.body), header, resource params, query params(Req.query), what type of methods(get,post,del,patch,update)
+-- contains detail about the client request.
+
+
+Ex: 
+url: https://api.github.com/users/self-tufs --> enter execute from browser , get the information in browser
+
+check in chrome --> f12 --> open the particular link in NETWORK
+                                                          |_headers
+                                                              |_ request general info
+                                                              |_ request header
+                                                              |_ response header
+                                                          |_ preview
+                                                          |_ response
+                                                          |_ cookies
+                                                          
+                                                          
+      -- req.method --(get/put/delete/post)  -> to access the request method
+      -- req.headers -- to access the request headers
+      -- req.ip     -- ip address from client side
+      -- req.originalUrl --
+      -- req.body   -- data present request
+      
+Ex: 
+
+var expresss = require('express');
+var app = express();
+
+app.get('/user', function(req,res){
+  var obj = {
+  "ip": req.ip,
+  "method":req.method,
+  "headers":req.headers
+  }
+  res.json(obj);
+  });
+ app.listen(3000, function(){   
+res.json({"name": "Hi selftufs"});
+});
+      
+now goto browser:
+https://localhost:3000/user/  -> get all output info
+
+Express api: express.js search in chrome
+
+
+
+Query parameters:
+____________________
+-- send data in http request in different ways
+    1. from body (req.body)
+    2. query params(req.query.<prop>)
+    3. headers  
+    4. in resource params (req.params)
+    
+sending parameter in query and extracting:
+
+url:https://localhost:3000/user
+
+sending data in htttp request is by using the query parameter
+
+for query parameter we need to provide '?' and we need to follow thw quesry parameter
+
+single query params:
+
+URL:
+https://localhost:3000/user?location=india
+?--> quesry
+location --> key
+india    --> vallue
+
+for multiple query params: using '&' operator
+
+url: https://localhost:3000/user?location=india&age=25
+
+
+How to access the query params? 
+Ans: req.query.<prop>
+
+Ex:
+app.get('/user', function(req,res){
+  res.json(req.query);
+});
+
+output:
+{
+ "location":"india",
+ " age" : :25:
+}
+
+
+resource params:(req.params.)
+____________________________
+urls:
+for single
+https://localhost:3000/user/name/jack --> trying to access user with name of jack --> to access the req.params
+https://localhost:3000/user/name/john --> trying to access user with name of john --> to access the req.params
+
+https://localhost:3000/user/name/:username
+
+make to type router with the /user/name/:username
+
+app.get('/user/name/:username', function(req,res){
+  res.json(req.params);
+});
+
+https://localhost:3000/user/name/jack
+output
+{ "username":"jack"}
+
+for multiple:
+https://localhost:3000/user/name/:username/age/:userage     --> to access the req.params
+
+Ex:
+
+make to type router with the /user/name/:username/age/:userage
+
+app.get('/user/name/:username/age/:userage', function(req,res){
+  res.json(req.params);
+});
+
+https://localhost:3000/user/name/jack/age/25
+output
+{ "username":"jack",
+  "age" : "25" 
+  }
+  
+
+post endpoint: (create)
+______________
+
+-- sending data into the body from client to server.
+-- express app instance, app provides 'post' -method
+-- app.post--> extract data from request and careate a database entry
+
+Ex:
+app.post('/user', function(req, res){ res.json(req.body)});
+client request
+method: post
+url: https://localhost:3000/user/
+body:
+{ "username":"jack",
+  "age" : "25" 
+  }
+  
+output:
+{ "username":"jack",
+  "age" : "25" 
+  }
+
+
+
+
+
+
+Ex:
+
+
+
+
+
+
+
+
+                                                          
+
+
+
 
 
 

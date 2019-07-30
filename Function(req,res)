@@ -1,0 +1,51 @@
+reference:
+
+express.js api library
+
+call back function in routers: function(req,res)
+
+Ex:
+app.get('/user', function(req,res)
+{
+res.json({"message":"success"));
+}
+
+Here:
+End point - '/user'
+callback function : function(Req,res)
+
+use of request object:
+_____________________
+-- request parameter is an object
+-- is the HTTP request object --> request is an instance of http request object
+-- request contains --> body, header, query, params,resource, params
+-- request object contains detail about the client request
+
+Ex: 
+url: https://api.github.com/users/self-tuts  -> this will give me the details about the self-tuts user details
+
+req.method:
+__________
+-- what is the request method, is it trying to access the "get"/"post"/"delete"/"patch"/"put"
+
+req.headers:
+___________
+-- to access the headers from the client side.
+-- to get the header info
+
+
+req.ip
+______
+-- to get the ip information
+
+req.originalUrl
+_______________
+
+
+
+req.body
+________
+
+
+
+

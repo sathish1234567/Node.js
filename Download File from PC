@@ -1,9 +1,9 @@
 var express = require('express'),
 fs = require('fs'),
 app = express();
-var filePath = "C:\\Users\\sathish.b\\AppData\\Local\\Microsoft\\Windows\\Temporary Internet Files\\Content.Outlook\\B2TB0U6C\\BP6 Devlopment Guidelines.pdf";
+var filePath = "C:\\Users\\unmae\\AppData\\Local\\Microsoft\\Windows\\Temporary Internet Files\\Content.Outlook\\B\\BP6 Devlopment Guidelines.pdf";
 app.get('/', function (req, res) {
-//var filePath = "C:\Users\sathish.b\AppData\Local\Microsoft\Windows\Temporary Internet Files\Content.Outlook\B2TB0U6C\BP6 Devlopment Guidelines.pdf";
+//var filePath = "C:\Users\unmae\AppData\Local\Microsoft\Windows\Temporary Internet Files\Content.Outlook\B\BP6 Devlopment Guidelines.pdf";
 
 fs.readFile( filePath , function (err,data){
     res.contentType("application/pdf");

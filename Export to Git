@@ -1,0 +1,5 @@
+Git status  ---changes file 
+Git add . 
+Git status 
+Git commit -m “changes description”
+Git push -u origin master

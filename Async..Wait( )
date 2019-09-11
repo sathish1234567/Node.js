@@ -1,0 +1,40 @@
+Using Async Await in Node.js
+Before Node version 7.6, the callbacks were the only official way provided by Node to run one function after another. As Node architecture is single-threaded and asynchronous, the community devised the callback functions, which would fire (or run) after the first function (to which the callbacks were assigned) run is completed.
+
+Example of a Callback:
+
+app.get('/', function(){
+ function1(arg1, function(){
+   ...
+})
+});
+The problem with this kind of code is that this kind of situations can cause a lot of trouble and the code can get messy when there are several functions. This situation is called what is commonly known as a callback hell.
+So, to find a way out, the idea of Promises and function chaining was introduced.
+
+Example: Before async/await
+
+function fun1(req, res){
+  return request.get('http://localhost:3000')
+   .catch((err) =>{
+     console.log('found error');
+}).then((res) =>{
+   console.log('get request returned.');
+});
+Explanation:
+The above code demos a function implemented with function chaining instead of callbacks. It can be observed that the code is now more easy to understand and readable. The code basically says that GET localhost:3000, catch the error if there is any; if there is no error then implement the following statement:
+console.log(‘get request returned.’);
+
+With Node v8, the async/await feature was officially rolled out by the Node to deal with Promises and function chaining. The functions need not to be chained one after another, simply await the function that returns the Promise. But the function async needs to be declared before awaiting a function returning a Promise. The code now looks like below.
+
+Example: After async/await
+
+async function fun1(req, res){
+  let response = await request.get('http://localhost:3000');
+    if (response.err) { console.log('error');}
+    else { console.log('fetched response');
+}
+Explanation:
+The code above basically asks the javascript engine running the code to wait for the request.get() function to complete before moving on to the next line to execute it. The request.get() function returns a Promise for which user will await . Before async/await, if it needs to be made sure that the functions are running in the desired sequence, that is one after the another, chain them one after the another or register callbacks.
+Code writing and understanding becomes easy with async/await as can be observed from both the examples.
+
+

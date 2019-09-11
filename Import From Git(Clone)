@@ -33,6 +33,19 @@ console.log("test ${ confog.example}");
 *The Object.keys() method returns an array of a given object's own enumerable property names, in the same order as we get with a normal loop.
 
 * console.log("paramObj=", paramObj)
+
+* switch(ind)
+  case i:
+   break;
+  case j;
+   break;
+  default:
+   break;
+  
+  
+* function defining 
+  var <function name>  = function(req,res,...){ ......}
+
   
 what is asyn().. wait/promise/call back method/
 

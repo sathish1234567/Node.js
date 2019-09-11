@@ -16,6 +16,10 @@ console.log("test ${ confog.example}");
 *request parameters
   |_method
   |_originalurl
+  |_body.data
+  |_body.serverNum(client)
+  |_body.ind
+  |_query.servernum
   
 *response parameters
   |_statuscode
@@ -23,4 +27,8 @@ console.log("test ${ confog.example}");
   
 * Router() -->expres pkge
   |_post,get,delete,put(update)
+  
+* conditional operator : <cond> ? true : false;  
+  
+what is asyn().. wait/promise/call back method/
 

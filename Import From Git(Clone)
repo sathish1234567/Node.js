@@ -31,6 +31,8 @@ console.log("test ${ confog.example}");
 * conditional operator : <cond> ? true : false;  
 
 *The Object.keys() method returns an array of a given object's own enumerable property names, in the same order as we get with a normal loop.
+
+* console.log("paramObj=", paramObj)
   
 what is asyn().. wait/promise/call back method/
 

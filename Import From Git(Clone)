@@ -1,10 +1,26 @@
 *R- process
 
-Take the url: from github: https://xxxx.com/srm_prod/api-closure.git
+1.  Take the url: from github: https://xxxx.com/srm_prod/api-closure.git
 git clone <url of git hub>
 give username:
 give password:
 
+2. install all the softwares from package.json
+go to folder path> npm i/install
 
-* How to save the changed file?
+
+*How to pass the data with string in console?
+console.log("test ${ confog.example}");
+
+
+*request parameters
+  |_method
+  |_originalurl
+  
+*response parameters
+  |_statuscode
+  |_status message
+  
+* Router() -->expres pkge
+  |_post,get,delete,put(update)
 

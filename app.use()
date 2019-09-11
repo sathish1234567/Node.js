@@ -1,0 +1,33 @@
+Middleware function myLogger
+Here is a simple example of a middleware function called “myLogger”. This function just prints “LOGGED” when a request to the app passes through it. The middleware function is assigned to a variable named myLogger.
+
+var myLogger = function (req, res, next) {
+  console.log('LOGGED')
+  next()
+}
+Notice the call above to next(). Calling this function invokes the next middleware function in the app. The next() function is not a part of the Node.js or Express API, but is the third argument that is passed to the middleware function. The next() function could be named anything, but by convention it is always named “next”. To avoid confusion, always use this convention.
+
+To load the middleware function, call app.use(), specifying the middleware function. For example, the following code loads the myLogger middleware function before the route to the root path (/).
+
+var express = require('express')
+var app = express()
+
+var myLogger = function (req, res, next) {
+  console.log('LOGGED')
+  next()
+}
+
+app.use(myLogger)
+
+app.get('/', function (req, res) {
+  res.send('Hello World!')
+})
+
+app.listen(3000)
+Every time the app receives a request, it prints the message “LOGGED” to the terminal.
+
+The order of middleware loading is important: middleware functions that are loaded first are also executed first.
+
+If myLogger is loaded after the route to the root path, the request never reaches it and the app doesn’t print “LOGGED”, because the route handler of the root path terminates the request-response cycle.
+
+The middleware function myLogger simply prints a message, then passes on the request to the next middleware function in the stack by calling the next() function.

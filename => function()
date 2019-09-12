@@ -1,0 +1,7 @@
+function abc(result){
+return result;
+}
+
+or
+
+abc = result=>result;

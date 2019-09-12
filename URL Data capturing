@@ -1,0 +1,12 @@
+Posting always receiving in req.body
+_____________________________________
+req.body.data <-- receiving the payload
+req.body.serverNum....
+
+capturing the url key values:(get entity)
+_________________________________________
+
+
+capturing the filter values:get entityset
+_________________________________________
+request.query.<keyvalues>

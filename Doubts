@@ -1,0 +1,27 @@
+localhost:8009/api/distmast/v1/DSMTargetApprListExt/09-2019
+http://localhost:8009/api/distmast/v1/DSMTargetApprListExt?saml2=disabled&month=09&year=2019
+/api/DsmTargetPerf/v1/DSMTargetPost:8009
+
+Posting always receiving in req.body
+_____________________________________
+req.body.data <-- receiving the payload
+
+capturing the url key values:(get entity)
+_________________________________________
+
+
+capturing the filter values:get entityset
+_________________________________________
+request.query.<keyvalues>
+
+
+result.data.d --> to get all the data
+result.data.d.<navigation name>.results --> is the array
+result.data.d.<navigation name>.results.length > 0 --> is the array
+delete request.data.d.metadata --> avoiding show the url in fron end side
+
+const data = await promises[promise]; // how system is calling in back end
+then it is going to --> fnMasterSuccess()
+
+
+

@@ -5,3 +5,32 @@ return result;
 or
 
 abc = result=>result;
+_______________________________
+let deleteMetadata = function(a) {
+        let i=0;
+        if (Array.isArray(a))
+        {
+            a.map(e=>{
+                delete e.__metadata;
+                a[i] = e;
+                i++;
+            })
+        }
+        return a; 
+}
+
+or
+
+let deleteMetadata = (a)=> {
+        let i=0;
+        if (Array.isArray(a))
+        {
+            a.map(e=>{
+                delete e.__metadata;
+                a[i] = e;
+                i++;
+            })
+        }
+        return a; 
+}
+

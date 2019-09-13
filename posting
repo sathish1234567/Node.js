@@ -1,0 +1,102 @@
+method:
+POST
+
+url:
+http://localhost:8009/api/distmast/v1/DSMTargetPost?saml2=disabled
+
+
+
+Payload:
+{	"serverNum": "447",         -->req.body.serverNum
+	"data": {                   --> req.body.data
+		"YearD": "2019",
+		"MonthD": "09",
+		"Consnt": "X",
+		"ConstRej":"001"
+	}
+}
+
+
+
+return new Promise(function (resolve, reject) {
+         request({
+             url: url,
+             jar: j,
+             headers: Newheaders
+         }, function (error, response, body) {
+             if (error) {
+                 var errorMsg = []
+                 errorMsg.push(error)
+                 res.status(500).send(errorMsg);
+             } else {
+                 token = response.headers["x-csrf-token"];
+                 var postHeader = {};
+                 if ((req.query.saml2 && req.query.saml2 === "disabled")) {
+                     let auth = "Basic ZmlvcmlfdGVzdDQ6V2VsY29tZS4x";
+                     postHeader["Authorization"] = (req.headers && req.headers["authorization"]) ? req.headers["authorization"] : auth;
+                 } else {
+                     postHeader["Cookie"] = req.headers ? req.headers["cookie"] : "";
+                 }
+                 postHeader["x-csrf-token"] = token;
+                 postHeader["Content-Type"] = "application/json";
+                 postHeader["Accept"] = "application/json";
+
+                 request({
+                     url: urlArr1,
+                     method: 'POST',
+                     jar: j,
+                     headers: postHeader,
+                     json: params
+                 }, function (error, response, body) {
+                     if (response) {
+                         var errorMsg = []
+                         var SuccessMsg = []
+                         var status = []
+                         if (response.body.error) {
+                             var error = utils.postingFnError(response)
+                             errorMsg.push(error);
+                             status = 400;
+                         } else {
+                             console.log("Params===", params, req.body)
+                             var resp = null
+                             if (paramObj.callBack) {
+                                 resp = paramObj.callBack(response, req.body)
+                             } else {
+                                 console.log("JSON.parse(response.headers['sap-message']).message", JSON.parse(response.headers["sap-message"]).message)
+                                 if (JSON.parse(response.headers["sap-message"]).message) {
+                                     resp = JSON.parse(response.headers["sap-message"]).message;
+                                 } else {
+                                     resp = "Transaction Completed with errors";
+                                 }
+
+                             }
+                             SuccessMsg.push(resp);
+                             status = 200;
+                         }
+                         let resData = (SuccessMsg.length > 0) ? SuccessMsg : errorMsg;
+                         res.status(status).send(resData);
+
+                     } else {
+                         var errorMsg = ["Internal server error"]
+                         res.status(500).send(errorMsg);
+                     }
+                     resolve();
+                 });
+             }
+         });
+     });
+
+
+
+Explaination :
+Response: is the json format
+	|_ contains all 	
+      body.d
+			headers	
+                url/location
+			        	content-type
+					      content-length
+					      sap-message in json severity, message
+			statuscode
+			statusmesasge
+	

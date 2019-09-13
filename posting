@@ -100,3 +100,17 @@ Response: is the json format
 			statuscode
 			statusmesasge
 	
+
+
+
+2. How to pass the data into json object
+Newheaders is ans json
+	|_Authorization
+	|_x-csrf-token
+	|_Content-Type
+	|_Accept
+	
+ Newheaders["Authorization"] = (req.headers && req.headers["authorization"]) ? req.headers["authorization"] : auth;
+ Newheaders["x-csrf-token"] = 'Fetch';
+ Newheaders["Content-Type"] = "application/json";
+ Newheaders["Accept"] = "application/json";

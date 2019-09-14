@@ -1,0 +1,64 @@
+
+get csrf-token and headers
+__________________________
+exports.fetchCSRFToken = async function (req, res, url) {
+
+    // var serverVal = null
+    // if (serverType === "447" || serverType === 447) {
+    //     serverVal = config.aServices[0]
+    // } else if (serverType === "091" || serverType === 91) {
+    //     serverVal = config.aServices[1]
+    // } else if (serverType === "092" || serverType === 92) {
+    //     serverVal = config.aServices[2]
+    // }
+    if (url) {
+        const promise = exports.fetch(req, res, {
+            url: url,
+            fnSuccess: result => result
+        });
+        const data = await promise;
+        if (data.headers) {
+            return [data.headers["x-csrf-token"], data.headers["set-cookie"]];
+        }
+        return [];
+    }
+}
+
+
+
+
+exports.fetch = function (req, res, oReq) {
+    let saml = (oReq.url.indexOf("?") > -1 ? "&" : "?") + "saml2=disabled",
+        url = oReq.url + ((req.query.saml2 && req.query.saml2 === "disabled") ? saml : ""),
+        params = {
+            url: url,
+            headers: {}
+        },
+        fnSuccess = (typeof oReq.fnSuccess === "function" ? oReq.fnSuccess : fnDefaultSuccess),
+        fnError = (typeof oReq.fnError === "function" ? oReq.fnError : fnDefaultError);
+
+    if (req.query.saml2 && req.query.saml2 === "disabled") {
+        let auth = "Basic ZmlvcmlfdGVzdDQ6V2VsY29tZS4x";
+        params.headers["Authorization"] = (req.headers && req.headers["authorization"]) ? req.headers["authorization"] : auth;
+    } else {
+        params.headers["Cookie"] = req.headers ? req.headers["cookie"] : "";
+    }
+
+    if (typeof oReq.method === "string" && config.aMethodTypes.indexOf(oReq.method) > -1) { //default get method will be set
+        params.method = oReq.method;
+        if (oReq.method === config.aMethodTypes[1] || oReq.method === config.aMethodTypes[2]) { //POST, PUT
+            params.data = oReq.payload;
+            if (oReq.token) {
+                params.headers["x-csrf-token"] = oReq.token;
+                params.headers["Cookie"] = oReq.cookie;
+            }
+        }
+    }
+    if (oReq.method === undefined || oReq.method === config.aMethodTypes[0]) {
+        params.headers["x-csrf-token"] = "Fetch";
+    }
+
+    return axios(params)
+        .then(fnSuccess)
+        .catch(fnError);
+}

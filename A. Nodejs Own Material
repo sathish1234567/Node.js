@@ -24,4 +24,12 @@ Ex: npm search express
 node js command line options:
 ______________________________
 
-1.  
+1.  node -c : check the syntax check with out executing the code
+2.  node -v : version check for node.js
+3.  node -h or --help : for help
+4.  node -e --> evaluate the values but not print
+    Ex: node -e  10 + 10
+5.  node -p  --> evaluates the values and print
+    Ex: node -p  enter
+    > 10 + 10
+    20

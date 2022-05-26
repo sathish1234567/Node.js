@@ -1,0 +1,27 @@
+dependencies install:
+local: --> npm i <modulename>
+global --> npm i <modulename> -g   <-- g- global
+Ex: <module nme> --> http/express
+
+dependencies uninstall: 
+_______________________
+once install the module, we can uninstall the modules.
+syntax:
+ npm uninstall <module nme>
+ 
+ Ex: npm uninstal express
+ 
+check the libraries list
+________________________
+npm ls  <-- to show up the all the libraries.
+
+search libraries:
+____________________
+npm search <module name>
+
+Ex: npm search express
+
+node js command line options:
+______________________________
+
+1.  

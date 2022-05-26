@@ -1,3 +1,5 @@
+https://datacadamia.com/web/javascript/module/node_path
+
 dependencies install:
 local: --> npm i <modulename>
 global --> npm i <modulename> -g   <-- g- global
